@@ -1,6 +1,5 @@
 package pl.psi.creatures;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;

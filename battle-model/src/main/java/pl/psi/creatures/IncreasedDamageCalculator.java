@@ -3,11 +3,9 @@ package pl.psi.creatures;
 import java.util.Random;
 
 class IncreasedDamageCalculator extends AbstractCalculateDamageStrategy implements DamageCalculatorIf{
-    private final boolean shouldIncreaseDamage;
 
     public IncreasedDamageCalculator(final Random rand, final boolean shouldIncreaseDamage) {
         super(rand);
-        this.shouldIncreaseDamage = shouldIncreaseDamage;
     }
 
     @Override
