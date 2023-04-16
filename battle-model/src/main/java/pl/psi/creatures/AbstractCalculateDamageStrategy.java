@@ -16,17 +16,21 @@ abstract class AbstractCalculateDamageStrategy implements DamageCalculatorIf
         rand = aRand;
     }
 
+    protected int calculateBaseDamage(final Creature aAttacker, final Creature aDefender){
+        int baseDamage = rand.nextInt( aAttacker.getDamage()
+                .upperEndpoint()
+                - aAttacker.getDamage()
+                .lowerEndpoint()
+                + 1 ) + aAttacker.getDamage()
+                .lowerEndpoint();
+        return (int) baseDamage;
+    }
     @Override
     public int calculateDamage( final Creature aAttacker, final Creature aDefender )
     {
         final int armor = getArmor( aDefender );
 
-        final int randValue = rand.nextInt( aAttacker.getDamage()
-            .upperEndpoint()
-            - aAttacker.getDamage()
-                .lowerEndpoint()
-            + 1 ) + aAttacker.getDamage()
-                .lowerEndpoint();
+        final int randValue = calculateBaseDamage(aAttacker, aDefender);
 
         double oneCreatureDamageToDeal;
         if( aAttacker.getAttack() >= armor )
