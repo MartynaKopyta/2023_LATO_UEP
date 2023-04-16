@@ -4,7 +4,7 @@ import java.util.Random;
 
 class IncreasedDamageCalculator extends AbstractCalculateDamageStrategy implements DamageCalculatorIf{
 
-    public IncreasedDamageCalculator(final Random rand, final boolean shouldIncreaseDamage) {
+    public IncreasedDamageCalculator(final Random rand) {
         super(rand);
     }
 
@@ -13,7 +13,12 @@ class IncreasedDamageCalculator extends AbstractCalculateDamageStrategy implemen
     {
         final int armor = getArmor( aDefender );
 
-        final int randValue = calculateBaseDamage(aAttacker, aDefender);
+        final int randValue = rand.nextInt( aAttacker.getDamage()
+                .upperEndpoint()
+                - aAttacker.getDamage()
+                .lowerEndpoint()
+                + 1 ) + aAttacker.getDamage()
+                .lowerEndpoint();
 
         double oneCreatureDamageToDeal;
         if( aAttacker.getAttack() >= armor )

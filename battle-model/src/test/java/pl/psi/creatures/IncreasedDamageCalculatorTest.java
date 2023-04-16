@@ -14,7 +14,7 @@ public class IncreasedDamageCalculatorTest {
         public void testCalculateDamage() {
             Random random = new Random(42L); // Use a fixed seed value
 
-            IncreasedDamageCalculator calculator = new IncreasedDamageCalculator(random, true);
+            IncreasedDamageCalculator calculator = new IncreasedDamageCalculator(random);
             Creature attacker = new Creature.Builder()
                     .amount(10)
                     .statistic(CreatureStats.builder()
