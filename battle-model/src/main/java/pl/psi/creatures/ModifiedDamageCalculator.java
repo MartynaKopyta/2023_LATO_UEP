@@ -2,9 +2,9 @@ package pl.psi.creatures;
 
 import java.util.Random;
 
-class IncreasedDamageCalculator extends AbstractCalculateDamageStrategy implements DamageCalculatorIf{
+class ModifiedDamageCalculator extends AbstractCalculateDamageStrategy implements DamageCalculatorIf{
 
-    public IncreasedDamageCalculator(final Random rand) {
+    public ModifiedDamageCalculator(final Random rand) {
         super(rand);
     }
 
@@ -28,7 +28,7 @@ class IncreasedDamageCalculator extends AbstractCalculateDamageStrategy implemen
             {
                 attackPoints = MAX_ATTACK_DIFF;
             }
-            oneCreatureDamageToDeal = randValue * (1 + attackPoints * ATTACK_BONUS + increaseDamageBy());
+            oneCreatureDamageToDeal = randValue * (1 + attackPoints * ATTACK_BONUS + increaseDamageBy()) * decreaseDamageBy();
         }
         else
         {
@@ -37,7 +37,7 @@ class IncreasedDamageCalculator extends AbstractCalculateDamageStrategy implemen
             {
                 defencePoints = MAX_DEFENCE_DIFF;
             }
-            oneCreatureDamageToDeal = (randValue * (1 - defencePoints * DEFENCE_BONUS)) * (1 + increaseDamageBy());
+            oneCreatureDamageToDeal = (randValue * (1 - defencePoints * DEFENCE_BONUS)) * (1 + increaseDamageBy()) * decreaseDamageBy();
         }
 
         if( oneCreatureDamageToDeal < 0 )
@@ -47,7 +47,15 @@ class IncreasedDamageCalculator extends AbstractCalculateDamageStrategy implemen
         return (int)(aAttacker.getAmount() * oneCreatureDamageToDeal);
     }
 
+    private double decreaseDamageBy() {
+
+        //count in the hero/heroStats/.. class of the attacker's hero
+        return (1 -0.05);
+    }
+
     private double increaseDamageBy() {
+        //count  in the hero/heroStats/.. class of the defender's hero
         return 0.1;
+
     }
 }
