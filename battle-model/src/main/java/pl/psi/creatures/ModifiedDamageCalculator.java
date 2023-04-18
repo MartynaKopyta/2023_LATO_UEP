@@ -49,12 +49,11 @@ class ModifiedDamageCalculator extends AbstractCalculateDamageStrategy implement
 
     private double decreaseDamageBy() {
 
-        //count in the hero/heroStats/.. class of the attacker's hero
         return (1 -0.05);
     }
 
     private double increaseDamageBy() {
-        //count  in the hero/heroStats/.. class of the defender's hero
+
         return 0.1;
 
     }
